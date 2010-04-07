@@ -15,4 +15,6 @@ LANGUAGE C;
 CREATE VIEW pg_config AS
   SELECT * FROM pg_config();
 
-GRANT SELECT ON pg_config TO PUBLIC;
+-- privileges are revoked from public
+REVOKE ALL ON FUNCTION pg_config () FROM public;
+REVOKE ALL ON pg_config FROM public;
