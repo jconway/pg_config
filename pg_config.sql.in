@@ -1,0 +1,18 @@
+/* $PostgreSQL: pgsql/contrib/pg_config/pg_config.sql.in,v 1.1 2009/01/04 22:19:59 tgl Exp $ */
+
+-- Adjust this setting to control where the objects get created.
+SET search_path = public;
+
+CREATE FUNCTION pg_config(
+    OUT name text,
+    OUT setting text
+)
+RETURNS SETOF record
+AS 'MODULE_PATHNAME'
+LANGUAGE C;
+
+-- Register a view on the function for ease of use.
+CREATE VIEW pg_config AS
+  SELECT * FROM pg_config();
+
+GRANT SELECT ON pg_config TO PUBLIC;
