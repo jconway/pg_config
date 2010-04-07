@@ -31,3 +31,31 @@ Currently only supports PostgreSQL 9.0 alpha.
 Joe Conway
 mail@joeconway.com
 
+
+Example:
+
+select * from unnest((select string_to_array(trim( both '''' from setting), ''' ''') from pg_config where name='CONFIGURE'));
+                           unnest                            
+-------------------------------------------------------------
+ CFLAGS=-O0 -g3
+ --prefix=/usr/local/pgsql-dev
+ --with-pgport=65432
+ --with-perl
+ --with-tcl
+ --with-tclconfig=/usr/lib64
+ --without-tk
+ --enable-nls
+ --enable-debug
+ --enable-cassert
+ --enable-depend
+ --with-pam
+ --enable-thread-safety
+ --with-openssl
+ --with-krb5
+ --with-includes=/usr/include/kerberosIV
+ --with-includes=/usr/include/et
+ --enable-integer-datetimes
+ --with-libxml
+ --with-python
+ DOCBOOKSTYLE=/usr/share/sgml/docbook/dsssl-stylesheets-1.79
+(21 rows)
